@@ -1,9 +1,10 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
-import 'dotenv/config';
+import dotenv from 'dotenv';
 import healthRoutes from './routes/healthRoutes.js';
-dotenv.config({ path: './config.env' });
+// 載入環境變數：index.js 位於 src/，實際檔案在上一層 server/config.env
+dotenv.config({ path: '../config.env' });
 const app = express();
 const PORT = process.env.PORT || 3000;
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || '')
