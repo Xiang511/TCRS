@@ -1,0 +1,29 @@
+services:
+  # 後端 API 服務 (Express)
+  - type: web
+    name: tcrs-api
+    env: node
+    plan: free
+    rootDir: server
+    buildCommand: npm install
+    startCommand: node src/index.js
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: ALLOWED_ORIGINS
+        # 部署後填入前端正式網址 (例: https://tcrs-web.onrender.com)
+        value: https://你的前端網址
+    autoDeploy: true
+    healthCheckPath: /api/health
+
+  # 前端靜態網站 (Vite build 輸出)
+  - type: static_site
+    name: tcrs-web
+    rootDir: client
+    buildCommand: npm install && npm run build
+    publishPath: dist
+    envVars:
+      - key: VITE_API_BASE
+        # 部署後改為 API 網域 + /api
+        value: https://你的API網址/api
+    autoDeploy: true
