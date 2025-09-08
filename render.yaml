@@ -1,3 +1,5 @@
+version: 1
+
 services:
   # 後端 API 服務 (Express)
   - type: web
@@ -16,14 +18,17 @@ services:
     autoDeploy: true
     healthCheckPath: /api/health
 
-  # 前端靜態網站 (Vite build 輸出)
-  - type: static_site
+  # 前端 Web 服務 (使用 serve 提供 dist)
+  - type: web
     name: tcrs-web
+    env: node
+    plan: free
     rootDir: client
-    buildCommand: npm install && npm run build
-    publishPath: dist
+    buildCommand: npm install && npm run build && npm install -D serve
+    startCommand: npx serve -s dist -l $PORT
     envVars:
+      - key: NODE_VERSION
+        value: 18
       - key: VITE_API_BASE
-        # 部署後改為 API 網域 + /api
         value: https://你的API網址/api
     autoDeploy: true
