@@ -3,7 +3,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import 'dotenv/config';
 import healthRoutes from './routes/healthRoutes.js';
-
+dotenv.config({ path: './config.env' });
 const app = express();
 const PORT = process.env.PORT || 3000;
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || '')
