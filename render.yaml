@@ -14,7 +14,7 @@ services:
         value: 18
       - key: ALLOWED_ORIGINS
         # 部署後填入前端正式網址 (例: https://tcrs-web.onrender.com)
-        value: https://你的前端網址
+        value: https://tcrs-web.onrender.com/
     autoDeploy: true
     healthCheckPath: /api/health
 
@@ -30,5 +30,5 @@ services:
       - key: NODE_VERSION
         value: 18
       - key: VITE_API_BASE
-        value: https://你的API網址/api
+        value: https://tcrs-api.onrender.com/api
     autoDeploy: true
