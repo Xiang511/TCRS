@@ -3,8 +3,10 @@ import cors from 'cors';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import healthRoutes from './routes/healthRoutes.js';
-// 載入環境變數：index.js 位於 src/，實際檔案在上一層 server/config.env
-dotenv.config({ path: '../config.env' });
+import royaleapiRoutes from './routes/royaleapiRoutes.js';
+
+dotenv.config({ path: 'config.env' });
+console.log('ROYALE_API_TOKEN present:', !!process.env.ROYALE_API_TOKEN);
 const app = express();
 const PORT = process.env.PORT || 3000;
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || '')
@@ -25,6 +27,7 @@ app.use(morgan('dev'));
 
 // API Routes
 app.use('/api', healthRoutes);
+app.use('/royale', royaleapiRoutes);
 
 // 404 handler
 app.use((req, res, next) => {
