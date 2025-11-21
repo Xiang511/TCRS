@@ -1,7 +1,6 @@
 {
   "name": "tcrs-vue-server",
   "version": "0.1.0",
-  "type": "module",
   "main": "src/index.js",
   "scripts": {
     "dev": "node --watch src/index.js",
@@ -11,6 +10,7 @@
     "cors": "^2.8.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
+    "mongoose": "^8.20.1",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
