@@ -4,7 +4,8 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "node --watch src/index.js",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "import": "node src/scripts/importPlayers.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 90%;
+    margin: auto!important;
+    overflow-x: scroll;
+}
+h1{
+    font-size: 2.5em!important;
+    font-weight: bold!important;
+    margin-top: 20px!important;
+}
+p{
+    font-size: 1.2em!important;
+    margin-bottom: 20px!important;
+}
+h1,p{
+    text-align: center;
+    margin: 20px 0;
+}
+.dtfc-fixed-left {
+    background: #fff!important;
+    box-shadow: none;
+    z-index: 1;
+}
+table.dataTable tbody th, table.dataTable tbody td{
+    padding: .75em !important;
+
+}
