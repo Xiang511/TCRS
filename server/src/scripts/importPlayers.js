@@ -60,7 +60,8 @@ async function fetchAndSavePlayer(playerTag) {
             expPoints: data.expPoints,
             lastPathOfLegendSeasonResult: data.lastPathOfLegendSeasonResult,
             bestPathOfLegendSeasonResult: data.bestPathOfLegendSeasonResult,
-            totalExpPoints: data.totalExpPoints
+            totalExpPoints: data.totalExpPoints,
+            time: new Date().toLocaleDateString('zh-TW')
         };
 
         // 使用 upsert (找到就更新，找不到就新增)

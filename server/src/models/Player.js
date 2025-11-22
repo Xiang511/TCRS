@@ -41,7 +41,8 @@ const playerSchema = new mongoose.Schema({
         trophies: { type: Number, required: true },
         rank: { type: Number }
     },
-    totalExpPoints: { type: Number, required: true }
+    totalExpPoints: { type: Number, required: true },
+    time: { type: String, required: true }
 });
 
 const Player = mongoose.model('Player', playerSchema);
