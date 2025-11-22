@@ -1,63 +1,67 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            color: #666;
-            line-height: 1.6;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+
+  <!-- jQUERY -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- jQUERY -->
+
+  <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
+  </script>
+  <style>
+
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1><%= title %></h1>
-        <p><%= message %></p>
-        <p>當前時間: <%= new Date().toLocaleString('zh-TW') %></p>
-        <!-- 顯示玩家列表 -->
-        <h2>玩家列表</h2>
-        <ul>
-            <% players.forEach(function(player) { %>
-                <li>
-                    <strong>名稱:</strong> <%= player.name %><br>
-                    <strong>標籤:</strong> <%= player.tag %><br>
-                    <strong>經驗等級:</strong> <%= player.expLevel %><br>
-                    <strong>勝場:</strong> <%= player.wins %><br>
-                    <strong>敗場:</strong> <%= player.losses %><br>
-                    <strong>戰鬥次數:</strong> <%= player.battleCount %><br>
-                    <strong>三皇冠勝場:</strong> <%= player.threeCrownWins %><br>
-                    <strong>挑戰卡片獲得:</strong> <%= player.challengeCardsWon %><br>
-                    <strong>挑戰最高勝場:</strong> <%= player.challengeMaxWins %><br>
-                    <strong>錦標賽卡片獲得:</strong> <%= player.tournamentCardsWon %><br>
-                    <strong>錦標賽戰鬥次數:</strong> <%= player.tournamentBattleCount %><br>
-                    <strong>總捐贈數:</strong> <%= player.totalDonations %><br>
-                    <strong>聯賽統計:</strong> <%= JSON.stringify(player.leagueStatistics) %><br>
-                    <strong>星星點數:</strong> <%= player.starPoints %><br>
-                    <strong>經驗點數:</strong> <%= player.expPoints %><br>
-                    <strong>最近傳奇之路賽季結果:</strong> <%= JSON.stringify(player.lastPathOfLegendSeasonResult) %><br>
-                    <strong>最佳傳奇之路賽季結果:</strong> <%= JSON.stringify(player.bestPathOfLegendSeasonResult) %><br>
-                    <strong>總經驗點數:</strong> <%= player.totalExpPoints %>
-                </li>
-            <% }); %>
-        </ul>
-    </div>
+  <div class="container">
+    <h1><%= title %></h1>
+    <p>當前時間: <%= new Date().toLocaleString('zh-TW') %></p>
+    <!-- 顯示玩家列表 -->
+    <table id="myTable"  class="cell-border hover">
+      <thead>
+        <tr>
+          <th>名稱</th>
+          <th>經驗</th>
+          <th>勝場</th>
+          <th>敗場</th>
+          <th>戰鬥次數</th>
+          <th>三冠次數</th>
+          <th>聯賽戰鬥次數</th>
+          <th>總捐贈數</th>
+          <th>星星點數</th>
+          <th>總經驗點數</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% players.forEach(function(player) { %>
+        <tr>
+          <td><%= player.name %></td>
+          <td><%= player.expLevel %></td>
+          <td><%= player.wins %></td>
+          <td><%= player.losses %></td>
+          <td><%= player.battleCount %></td>
+          <td><%= player.threeCrownWins %></td>
+          <td><%= player.tournamentBattleCount %></td>
+          <td><%= player.totalDonations %></td>
+          <td><%= player.starPoints %></td>
+          <td><%= player.totalExpPoints %></td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+
+
+  </div>
 </body>
+
 </html>
