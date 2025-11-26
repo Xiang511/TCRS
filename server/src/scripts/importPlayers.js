@@ -69,38 +69,34 @@ async function fetchAndSavePlayer(playerTag) {
             });
         }
 
-        // 準備玩家資料
+        // 準備玩家資料(加入預設值處理)
         const playerData = {
             tag: data.tag,
             name: data.name,
-            expLevel: data.expLevel,
-            wins: data.wins,
-            losses: data.losses,
-            battleCount: data.battleCount,
-            threeCrownWins: data.threeCrownWins,
-            challengeCardsWon: data.challengeCardsWon,
-            challengeMaxWins: data.challengeMaxWins,
-            tournamentCardsWon: data.tournamentCardsWon,
-            tournamentBattleCount: data.tournamentBattleCount,
-            totalDonations: data.totalDonations,
-            leagueStatistics: data.leagueStatistics,
-            starPoints: data.starPoints,
-            expPoints: data.expPoints,
-            lastPathOfLegendSeasonResult: data.lastPathOfLegendSeasonResult,
-            bestPathOfLegendSeasonResult: data.bestPathOfLegendSeasonResult,
-            totalExpPoints: data.totalExpPoints,
+            expLevel: data.expLevel || 0,
+            wins: data.wins || 0,
+            losses: data.losses || 0,
+            battleCount: data.battleCount || 0,
+            threeCrownWins: data.threeCrownWins || 0,
+            challengeCardsWon: data.challengeCardsWon || 0,
+            challengeMaxWins: data.challengeMaxWins || 0,
+            tournamentCardsWon: data.tournamentCardsWon || 0,
+            tournamentBattleCount: data.tournamentBattleCount || 0,
+            totalDonations: data.totalDonations || 0,
+            leagueStatistics: data.leagueStatistics || {},
+            starPoints: data.starPoints || 0,
+            expPoints: data.expPoints || 0,
+            lastPathOfLegendSeasonResult: data.lastPathOfLegendSeasonResult || {},
+            bestPathOfLegendSeasonResult: data.bestPathOfLegendSeasonResult || {},
+            totalExpPoints: data.totalExpPoints || 0,
             time: new Date().toLocaleDateString('zh-TW'),
             progress: progressData,
             badges: badgesData
         };
-        // 使用 upsert (找到就更新，找不到就新增)
-        const result = await Player.findOneAndUpdate(
-            { tag: playerData.tag },
-            playerData,
-            { upsert: true, new: true }
-        );
+        // 每次都創建新記錄,保留歷史數據
+        const result = await Player.create(playerData);
 
-        console.log(`✅ 成功儲存玩家: ${data.name} (${data.tag})`);
+        console.log(`✅ 成功新增玩家記錄: ${data.name} (${data.tag}) - ${playerData.time}`);
         return result;
     } catch (error) {
         console.error(`❌ 獲取或儲存玩家 ${playerTag} 失敗:`, error.message);

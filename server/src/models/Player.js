@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const playerSchema = new mongoose.Schema({
-    tag: { type: String, required: true, unique: true },
+    tag: { type: String, required: true },
     name: { type: String, required: true },
     expLevel: { type: Number, required: true },
     wins: { type: Number, required: true },
@@ -15,45 +15,45 @@ const playerSchema = new mongoose.Schema({
     totalDonations: { type: Number, required: true },
     leagueStatistics: {
         currentSeason: {
-            trophies: { type: Number, required: true },
-            bestTrophies: { type: Number, required: true }
+            trophies: { type: Number },
+            bestTrophies: { type: Number }
         },
         previousSeason: {
-            id: { type: String, required: true },
-            trophies: { type: Number, required: true },
-            bestTrophies: { type: Number, required: true }
+            id: { type: String },
+            trophies: { type: Number },
+            bestTrophies: { type: Number }
         },
         bestSeason: {
-            id: { type: String, required: true },
+            id: { type: String },
             rank: { type: Number },
-            trophies: { type: Number, required: true }
+            trophies: { type: Number }
         }
     },
-    starPoints: { type: Number, required: true },
-    expPoints: { type: Number, required: true },
+    starPoints: { type: Number, default: 0 },
+    expPoints: { type: Number, default: 0 },
     lastPathOfLegendSeasonResult: {
-        leagueNumber: { type: Number, required: true },
-        trophies: { type: Number, required: true },
+        leagueNumber: { type: Number },
+        trophies: { type: Number },
         rank: { type: Number }
     },
     bestPathOfLegendSeasonResult: {
-        leagueNumber: { type: Number, required: true },
-        trophies: { type: Number, required: true },
+        leagueNumber: { type: Number },
+        trophies: { type: Number },
         rank: { type: Number }
     },
-    totalExpPoints: { type: Number, required: true },
+    totalExpPoints: { type: Number, default: 0 },
     time: { type: String, required: true },
     progress: {
         type: Map,
         of: {
             arena: {
-                id: { type: Number, required: true },
-                name: { type: String, required: true }
+                id: { type: Number },
+                name: { type: String }
             },
-            trophies: { type: Number, required: true },
-            bestTrophies: { type: Number, required: true }
+            trophies: { type: Number },
+            bestTrophies: { type: Number }
         },
-        required: true
+        default: {}
     },
     badges: {
         Classic12Wins: {
@@ -80,7 +80,13 @@ const playerSchema = new mongoose.Schema({
             progress: { type: Number }
         }
     }
+}, {
+    timestamps: true // 自動添加 createdAt 和 updatedAt
 });
+
+// 建立複合索引以提升查詢效能
+playerSchema.index({ tag: 1, time: -1 });
+playerSchema.index({ time: -1 });
 
 const Player = mongoose.model('Player', playerSchema);
 
