@@ -42,7 +42,44 @@ const playerSchema = new mongoose.Schema({
         rank: { type: Number }
     },
     totalExpPoints: { type: Number, required: true },
-    time: { type: String, required: true }
+    time: { type: String, required: true },
+    progress: {
+        type: Map,
+        of: {
+            arena: {
+                id: { type: Number, required: true },
+                name: { type: String, required: true }
+            },
+            trophies: { type: Number, required: true },
+            bestTrophies: { type: Number, required: true }
+        },
+        required: true
+    },
+    badges: {
+        Classic12Wins: {
+            level: { type: Number },
+            maxLevel: { type: Number },
+            progress: { type: Number },
+            target: { type: Number }
+        },
+        EmoteCollection: {
+            level: { type: Number },
+            maxLevel: { type: Number },
+            progress: { type: Number },
+            target: { type: Number }
+        },
+        BannerCollection: {
+            level: { type: Number },
+            maxLevel: { type: Number },
+            progress: { type: Number },
+            target: { type: Number }
+        },
+        YearsPlayed: {
+            level: { type: Number },
+            maxLevel: { type: Number },
+            progress: { type: Number }
+        }
+    }
 });
 
 const Player = mongoose.model('Player', playerSchema);

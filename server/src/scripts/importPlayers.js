@@ -41,6 +41,34 @@ async function fetchAndSavePlayer(playerTag) {
 
         const data = await response.json();
 
+        // 處理 progress 資料
+        const progressData = {};
+        if (data.progress && typeof data.progress === 'object') {
+            for (const [key, value] of Object.entries(data.progress)) {
+                progressData[key] = {
+                    arena: value.arena,
+                    trophies: value.trophies,
+                    bestTrophies: value.bestTrophies
+                };
+            }
+        }
+
+        // 處理 badges 資料 - 只提取指定的 4 個徽章
+        const badgesData = {};
+        const targetBadges = ['Classic12Wins', 'EmoteCollection', 'BannerCollection', 'YearsPlayed'];
+        if (data.badges && Array.isArray(data.badges)) {
+            data.badges.forEach(badge => {
+                if (targetBadges.includes(badge.name)) {
+                    badgesData[badge.name] = {
+                        level: badge.level,
+                        maxLevel: badge.maxLevel,
+                        progress: badge.progress,
+                        target: badge.target
+                    };
+                }
+            });
+        }
+
         // 準備玩家資料
         const playerData = {
             tag: data.tag,
@@ -61,9 +89,10 @@ async function fetchAndSavePlayer(playerTag) {
             lastPathOfLegendSeasonResult: data.lastPathOfLegendSeasonResult,
             bestPathOfLegendSeasonResult: data.bestPathOfLegendSeasonResult,
             totalExpPoints: data.totalExpPoints,
-            time: new Date().toLocaleDateString('zh-TW')
+            time: new Date().toLocaleDateString('zh-TW'),
+            progress: progressData,
+            badges: badgesData
         };
-
         // 使用 upsert (找到就更新，找不到就新增)
         const result = await Player.findOneAndUpdate(
             { tag: playerData.tag },
