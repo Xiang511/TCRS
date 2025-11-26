@@ -6,22 +6,67 @@ dotenv.config({ path: './config.env' });
 // 渲染玩家列表頁面
 router.get('/', async function (req, res, next) {
   try {
-    const players = await Player.find(); // 獲取所有玩家
-    res.render('players', { title: '玩家列表', message: 'success', players: players });
+    const { time } = req.query;
+    const filter = {};
+    
+    // 如果有指定季度,就過濾
+    if (time) {
+      filter.time = time;
+    }
+
+    // 獲取玩家資料並按星星點數排序
+    const players = await Player.find(filter).sort({ starPoints: -1 });
+    
+    // 獲取所有可用的季度(不重複)
+    const availableSeasons = await Player.distinct('time');
+    availableSeasons.sort().reverse(); // 最新的在前面
+
+    res.render('players', { 
+      title: '玩家列表', 
+      message: 'success', 
+      players: players,
+      availableSeasons: availableSeasons,
+      currentSeason: time || ''
+    });
   } catch (error) {
     console.error('獲取玩家列表失敗:', error);
-    res.render('players', { title: '玩家列表', message: 'failed to load players', players: [] });
+    res.render('players', { 
+      title: '玩家列表', 
+      message: 'failed to load players', 
+      players: [],
+      availableSeasons: [],
+      currentSeason: ''
+    });
   }
 });
 
-// 從 MongoDB 獲取玩家列表
+// 從 MongoDB 獲取玩家列表 (JSON API)
 router.get('/list', async function (req, res, next) {
   try {
-    const players = await Player.find(); // 獲取所有玩家
-    res.json({ players }); // 返回玩家列表
+    const { time } = req.query;
+    const filter = {};
+    
+    if (time) {
+      filter.time = time;
+    }
+
+    const players = await Player.find(filter).sort({ starPoints: -1 });
+    res.json({ players });
   } catch (error) {
     console.error('獲取玩家列表失敗:', error);
     res.status(500).json({ error: '無法獲取玩家列表' });
+  }
+});
+
+// 獲取所有可用季度
+router.get('/seasons', async function (req, res, next) {
+  try {
+    const seasons = await Player.distinct('time');
+    seasons.sort().reverse();
+    res.json({ seasons });
+  } catch (error) {
+    console.error('獲取季度列表失敗:', error);
+    res.status(500).json({ error: '無法獲取季度列表' });
   }
 });
 

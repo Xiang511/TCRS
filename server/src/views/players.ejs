@@ -36,13 +36,9 @@
   <script>
     $(document).ready(function() {
       let table = new DataTable('#myTable', {
-        order: [
-          [1, 'desc']
-        ],
+        order: [[1, 'desc']], 
         info: false,
-        // paging: false
         processing: true,
-        // 表格拖拉
         colReorder: true,
         colReorder: {
           fixedColumnsLeft: 1
@@ -52,24 +48,64 @@
           end: 2
         },
         scrollCollapse: true,
+        language: {
+          processing: "處理中...",
+          search: "搜尋:",
+          lengthMenu: "顯示 _MENU_ 筆資料",
+          paginate: {
+            first: "第一頁",
+            last: "最後一頁",
+            next: "下一頁",
+            previous: "上一頁"
+          },
+          emptyTable: "目前沒有資料",
+          zeroRecords: "沒有符合的資料"
+        }
+      });
+
+      // 季度選擇器切換
+      $('#seasonSelect').on('change', function() {
+        const selectedSeason = $(this).val();
+        if (selectedSeason) {
+          window.location.href = `/players?time=${encodeURIComponent(selectedSeason)}`;
+        } else {
+          window.location.href = '/players';
+        }
       });
     });
-
-    
   </script>
-  <style>
 
-  </style>
 </head>
 
 <body>
-  <a href="https://SiteStates.com" title="站長工具" style="display: none;">
-    <img src="https://SiteStates.com/show/image/33664.jpg" border="0" />
-  </a>
-  <div>
+  <div class="container">
     <h1><%= title %></h1>
-    <p>更新時間: <%= players[0].time %></p>
-    <p>資料筆數: <%= players.length %></p>
+    
+    <div class="info-section">
+      <!-- 季度選擇器 -->
+      <div class="season-selector">
+        <label for="seasonSelect">選擇季度：</label>
+        <select id="seasonSelect">
+          <option value="">全部季度</option>
+          <% availableSeasons.forEach(function(season) { %>
+            <option value="<%= season %>" <%= currentSeason === season ? 'selected' : '' %>>
+              <%= season %>
+            </option>
+          <% }); %>
+        </select>
+      </div>
+
+      <div>
+        <p class="info-text">
+          <% if (players.length > 0) { %>
+            更新時間: <%= players[0].time %> | 資料筆數: <%= players.length %>
+          <% } else { %>
+            目前沒有資料
+          <% } %>
+        </p>
+      </div>
+    </div>
+
     <!-- 顯示玩家列表 -->
     <table id="myTable" class="display">
       <thead>
@@ -101,8 +137,6 @@
         <% }); %>
       </tbody>
     </table>
-
-
   </div>
 </body>
 

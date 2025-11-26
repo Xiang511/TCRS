@@ -1,32 +1,111 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-body{
+
+body {
     width: 90%;
-    margin: auto!important;
+    margin: auto !important;
     overflow-x: scroll;
 }
-h1{
-    font-size: 2.5em!important;
-    font-weight: bold!important;
-    margin-top: 20px!important;
+
+h1 {
+    font-size: 2.5em !important;
+    font-weight: bold !important;
+    margin-top: 20px !important;
 }
-p{
-    font-size: 1.2em!important;
-    margin-bottom: 20px!important;
+
+p {
+    font-size: 1.2em !important;
+    margin-bottom: 20px !important;
 }
-h1,p{
+
+h1,
+p {
     text-align: center;
     margin: 20px 0;
 }
+
 .dtfc-fixed-left {
-    background: #fff!important;
+    background: #fff !important;
     box-shadow: none;
     z-index: 1;
 }
-table.dataTable tbody th, table.dataTable tbody td{
+
+table.dataTable tbody th,
+table.dataTable tbody td {
     padding: .75em !important;
 
+}
+
+
+.container {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #667eea;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.info-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.season-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.season-selector label {
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.season-selector select {
+    padding: 8px 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.season-selector select:hover {
+    border-color: #667eea;
+}
+
+.season-selector select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.info-text {
+    color: #718096;
+    font-size: 0.95rem;
+}
+
+
+
+table.dataTable tbody tr:hover {
+    background-color: #f7fafc;
+}
+
+table.dataTable tbody td {
+    padding: 10px;
 }
