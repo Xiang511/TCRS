@@ -6,20 +6,24 @@ dotenv.config({ path: './config.env' });
 // 渲染玩家列表頁面
 router.get('/', async function (req, res, next) {
   try {
-    const { time } = req.query;
-    const filter = {};
+    let { time } = req.query;
     
-    // 如果有指定季度,就過濾
+    // 獲取所有可用的季度(不重複)
+    const availableSeasons = await Player.distinct('time');
+    availableSeasons.sort().reverse(); // 最新的在前面
+    
+    // 如果沒有指定季度且有可用季度,預設顯示最新季度
+    if (!time && availableSeasons.length > 0) {
+      time = availableSeasons[0];
+    }
+    
+    const filter = {};
     if (time) {
       filter.time = time;
     }
 
     // 獲取玩家資料並按星星點數排序
     const players = await Player.find(filter).sort({ starPoints: -1 });
-    
-    // 獲取所有可用的季度(不重複)
-    const availableSeasons = await Player.distinct('time');
-    availableSeasons.sort().reverse(); // 最新的在前面
 
     res.render('players', { 
       title: '玩家列表', 

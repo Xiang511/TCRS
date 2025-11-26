@@ -86,7 +86,6 @@
       <div class="season-selector">
         <label for="seasonSelect">選擇季度：</label>
         <select id="seasonSelect">
-          <option value="">全部季度</option>
           <% availableSeasons.forEach(function(season) { %>
             <option value="<%= season %>" <%= currentSeason === season ? 'selected' : '' %>>
               <%= season %>
