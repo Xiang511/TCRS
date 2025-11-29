@@ -67,8 +67,11 @@ app.get('/', (req, res) => {
   });
 });
 
+    
 
-
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok' });
+});
 
 // 404 錯誤
 app.use(function (req, res, next) {

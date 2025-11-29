@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %></title>
   <link rel="stylesheet" href="/css/player.css">
-
+  <link rel="stylesheet" href="/css/nav.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <!-- jQUERY -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- jQUERY -->
@@ -35,7 +36,29 @@
 
 </head>
 
-<body>
+<body><input type="checkbox" id="menu-switch">
+  <header class="main-header">
+    <div class="logo">
+      <a href="/">
+        TCRS
+      </a>
+    </div>
+
+    <label for="menu-switch" class="hb icon">
+      <i class='bx bx-menu open'></i>
+      <i class='bx bx-x close'></i>
+    </label>
+
+    <nav class="main-nav">
+      <a class="click" href="/">首頁</a>
+      <a class="click" href="/players">生涯紀錄</a>
+      <a class="click" href="/players/leaderboard">天梯紀錄</a>
+      <a class="click" href="/players/badges">徽章紀錄</a>
+
+
+
+    </nav>
+  </header>
   <div class="container">
     <h1><%= title %> <img class="leaderboardTitleIcon" src="/img/Path of Legends icon.png" alt=""></h1>
 
