@@ -78,8 +78,76 @@ const playerSchema = new mongoose.Schema({
             level: { type: Number },
             maxLevel: { type: Number },
             progress: { type: Number }
-        }
-    }
+        },
+        Grand12Wins: {
+            level: { type: Number },
+            maxLevel: { type: Number },
+            progress: { type: Number },
+            target: { type: Number }
+        },
+        '2v2': {
+            level: { type: Number },    
+            maxLevel: { type: Number },
+            progress: { type: Number },
+            target: { type: Number }    
+        },
+        SuddenDeath: {
+            level: { type: Number },
+            maxLevel: { type: Number },
+            progress: { type: Number },
+            target: { type: Number }
+        },
+        RampUp: {
+            level: { type: Number },
+            maxLevel: { type: Number },
+            progress: { type: Number },
+            target: { type: Number }
+        },
+        Draft: {
+            level: { type: Number },
+            maxLevel: { type: Number },
+            progress: { type: Number },
+            target: { type: Number }
+        },
+        Crl20Wins: {
+            level: { type: Number },
+            maxLevel: { type: Number },
+            progress: { type: Number },
+            target: { type: Number }
+        },
+        Crl20Wins2019: {
+            level: { type: Number },
+            maxLevel: { type: Number },
+            progress: { type: Number }, 
+            target: { type: Number }
+        },
+        Crl20Wins2022: {        
+            level: { type: Number },
+            maxLevel: { type: Number },
+            progress: { type: Number },
+            target: { type: Number }
+        },
+        Crl20Wins2023: {
+            level: { type: Number },
+            maxLevel: { type: Number },
+
+            progress: { type: Number },
+            target: { type: Number }
+        },          
+
+        Crl20Wins2024: {
+            level: { type: Number },
+            maxLevel: { type: Number }, 
+            progress: { type: Number },
+            target: { type: Number }
+        }, 
+        Crl20Wins2025: {        
+            level: { type: Number },
+            maxLevel: { type: Number },
+            progress: { type: Number },
+            target: { type: Number }
+        }          
+    }       
 }, {
     timestamps: true // 自動添加 createdAt 和 updatedAt
 });

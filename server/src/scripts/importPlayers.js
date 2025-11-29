@@ -53,9 +53,9 @@ async function fetchAndSavePlayer(playerTag) {
             }
         }
 
-        // 處理 badges 資料 - 只提取指定的 4 個徽章
+        // 處理 badges 資料 - 只提取指定徽章
         const badgesData = {};
-        const targetBadges = ['Classic12Wins', 'EmoteCollection', 'BannerCollection', 'YearsPlayed'];
+        const targetBadges = ['Classic12Wins', 'EmoteCollection', 'BannerCollection', 'YearsPlayed','Grand12Wins','2v2','SuddenDeath','RampUp','Draft','Crl20Wins','Crl20Wins2019','Crl20Wins2022','Crl20Wins2023','Crl20Wins2024','Crl20Wins2025'];
         if (data.badges && Array.isArray(data.badges)) {
             data.badges.forEach(badge => {
                 if (targetBadges.includes(badge.name)) {
