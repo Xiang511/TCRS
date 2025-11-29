@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= statusCode %> - <%= title %></title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .error-container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 600px;
+      width: 100%;
+      padding: 50px 40px;
+      text-align: center;
+      animation: slideIn 0.5s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .error-icon {
+      font-size: 5rem;
+      margin-bottom: 20px;
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .error-code {
+      font-size: 4rem;
+      font-weight: bold;
+      color: #667eea;
+      margin-bottom: 10px;
+    }
+
+    .error-title {
+      font-size: 1.8rem;
+      color: #2d3748;
+      margin-bottom: 15px;
+    }
+
+    .error-message {
+      color: #718096;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .error-details {
+      background: #f7fafc;
+      padding: 20px;
+      border-radius: 10px;
+      border-left: 4px solid #fc8181;
+      text-align: left;
+      margin-bottom: 30px;
+    }
+
+    .error-details h3 {
+      color: #e53e3e;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .error-details pre {
+      color: #4a5568;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+        background: red;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-secondary {
+      background: #e2e8f0;
+      color: #4a5568;
+    }
+
+    .btn-secondary:hover {
+      background: #cbd5e0;
+      transform: translateY(-2px);
+    }
+
+    /* RWD */
+    @media (max-width: 480px) {
+      .error-container {
+        padding: 40px 25px;
+      }
+
+      .error-code {
+        font-size: 3rem;
+      }
+
+      .error-title {
+        font-size: 1.5rem;
+      }
+
+      .error-icon {
+        font-size: 4rem;
+      }
+
+      .btn-group {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="error-container">
+    <div class="error-icon">
+      <% if (statusCode === 404) { %>
+      🔍
+      <% } else if (statusCode >= 500) { %>
+      ⚠️
+      <% } else { %>
+      ❌
+      <% } %>
+    </div>
+
+    <div class="error-code"><%= statusCode %></div>
+    <h1 class="error-title"><%= title %></h1>
+    <p class="error-message"><%= message %></p>
+
+    <% if (typeof error !== 'undefined' && error) { %>
+    <div class="error-details">
+      <h3>🐛 錯誤詳細資訊（開發模式）</h3>
+      <pre><%= error.stack || error %></pre>
+    </div>
+    <% } %>
+
+    <div class="btn-group">
+      <a href="/" class="btn btn-primary">🏠 返回首頁</a>
+      <button onclick="history.back()" class="btn btn-secondary">← 上一頁</button>
+    </div>
+  </div>
+</body>
+
+</html>
