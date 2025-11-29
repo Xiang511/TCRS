@@ -37,17 +37,17 @@
 
 <body>
   <div class="container">
-    <h1><%= title %> <img class="leaderboardTitleIcon" src="/img/battle.png" alt=""></h1>
-    
+    <h1><%= title %> <img class="leaderboardTitleIcon" src="/img/Path of Legends icon.png" alt=""></h1>
+
     <div class="info-section">
       <!-- 季度選擇器 -->
       <div class="season-selector">
         <label for="seasonSelect">選擇季度：</label>
         <select id="seasonSelect">
           <% availableSeasons.forEach(function(season) { %>
-            <option value="<%= season %>" <%= currentSeason === season ? 'selected' : '' %>>
-              <%= season %>
-            </option>
+          <option value="<%= season %>" <%= currentSeason === season ? 'selected' : '' %>>
+            <%= season %>
+          </option>
           <% }); %>
         </select>
       </div>
@@ -55,9 +55,9 @@
       <div>
         <p class="info-text">
           <% if (players.length > 0) { %>
-            更新時間: <%= players[0].time %> | 資料筆數: <%= players.length %>
+          更新時間: <%= players[0].time %> | 資料筆數: <%= players.length %>
           <% } else { %>
-            目前沒有資料
+          目前沒有資料
           <% } %>
         </p>
       </div>
@@ -68,36 +68,30 @@
       <thead>
         <tr>
           <th>名稱</th>
-          <th>經驗</th>
-          <th>勝場</th>
-          <th>戰鬥次數</th>
-          <th>三冠次數</th>
-          <th>聯賽次數</th>
-          <th>總捐贈數</th>
-          <th>星光點數</th>
-          <th>經驗點數</th>
-          <th>遊玩時間</th>
+          <th>最佳排名</th>
+          <th>最佳杯數</th>
+          <th>上季排名</th>
+          <th>上季杯數</th>
+          <th>舊排名 <img class="leaderboardicon" src="/img/oldrank.png" alt=""></th>
         </tr>
       </thead>
       <tbody>
         <% players.forEach(function(player) { %>
         <tr>
           <td><%= player.name %></td>
-          <td><%= player.expLevel %></td>
-          <td><%= player.wins %></td>
-          <td><%= player.battleCount %></td>
-          <td><%= player.threeCrownWins %></td>
-          <td><%= player.tournamentBattleCount %></td>
-          <td><%= player.totalDonations %></td>
-          <td><%= player.starPoints %></td>
-          <td><%= player.totalExpPoints %></td>
-          <td><%= player.badges.YearsPlayed.progress || 0 %></td>
+          <td><%= player.bestPathOfLegendSeasonResult.rank || 10000 %></td>
+          <td><%= player.bestPathOfLegendSeasonResult.trophies || 0 %></td>
+          <td><%= player.lastPathOfLegendSeasonResult.rank || 10000 %></td>
+          <td><%= player.lastPathOfLegendSeasonResult.trophies || 0%></td>
+          <td><%= player.leagueStatistics.bestSeason.rank || 10000 %></td>
+
+
         </tr>
         <% }); %>
       </tbody>
     </table>
   </div>
-   <script src="/js/datatable.js"></script>
+  <script src="/js/datatable.js"></script>
 </body>
 
 </html>

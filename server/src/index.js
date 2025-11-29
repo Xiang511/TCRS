@@ -51,7 +51,7 @@ app.get('/api/health', (req, res) => {
 app.get('/', (req, res) => {
   res.render('index', { 
     title: 'TCRS Server',
-    message: '歡迎使用 EJS 模板引擎'
+    message: '這是測試首頁!'
   });
 });
 

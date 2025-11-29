@@ -68,30 +68,40 @@
       <thead>
         <tr>
           <th>名稱</th>
-          <th>經驗</th>
-          <th>勝場</th>
-          <th>戰鬥次數</th>
-          <th>三冠次數</th>
-          <th>聯賽次數</th>
-          <th>總捐贈數</th>
-          <th>星光點數</th>
-          <th>經驗點數</th>
-          <th>遊玩時間</th>
+          <th>戰旗收集</th>
+          <th>表情收集</th>
+          <th>經典12勝</th>
+          <th>終極12勝</th>
+          <th>2v2</th>
+          <th>驟死賽</th>
+          <th>雙倍聖水</th>
+          <th>選卡模式</th>
+          <th>CRL2018</th>
+          <th>CRL2019</th>
+          <th>CRL2022</th>
+          <th>CRL2023</th>
+          <th>CRL2024</th>
+          <th>CRL2025</th>
         </tr>
       </thead>
       <tbody>
         <% players.forEach(function(player) { %>
         <tr>
           <td><%= player.name %></td>
-          <td><%= player.expLevel %></td>
-          <td><%= player.wins %></td>
-          <td><%= player.battleCount %></td>
-          <td><%= player.threeCrownWins %></td>
-          <td><%= player.tournamentBattleCount %></td>
-          <td><%= player.totalDonations %></td>
-          <td><%= player.starPoints %></td>
-          <td><%= player.totalExpPoints %></td>
-          <td><%= player.badges.YearsPlayed.progress || 0 %></td>
+          <td><%= player.badges.BannerCollection.progress || 0 %></td>
+          <td><%= player.badges.EmoteCollection.progress || 0 %></td>
+          <td><%= player.badges.Classic12Wins.progress || 0 %></td>
+          <td><%= player.badges.Grand12Wins.progress || 0 %></td>
+          <td><%= player.badges['2v2'].progress || 0 %></td>
+          <td><%= player.badges.SuddenDeath.progress || 0 %></td>
+          <td><%= player.badges.RampUp.progress || 0 %></td>
+          <td><%= player.badges.Draft.progress || 0 %></td>
+          <td><%= player.badges.Crl20Wins.progress || 0 %></td>
+          <td><%= player.badges.Crl20Wins2019.progress || 0 %></td>
+          <td><%= player.badges.Crl20Wins2022.progress || 0 %></td>
+          <td><%= player.badges.Crl20Wins2023.progress || 0 %></td>
+          <td><%= player.badges.Crl20Wins2024.progress || 0 %></td>
+          <td><%= player.badges.Crl20Wins2025.progress || 0 %></td> 
         </tr>
         <% }); %>
       </tbody>
