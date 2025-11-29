@@ -1,273 +1,279 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-        /* Header */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 20px 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            margin-bottom: 30px;
-            text-align: center;
-        }
+    /* Header */
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      margin-bottom: 30px;
+      text-align: center;
+    }
 
-        header h1 {
-            color: #667eea;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
+    header h1 {
+      color: #667eea;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
 
-        header p {
-            color: #718096;
-            font-size: 1.1rem;
-        }
+    header p {
+      color: #718096;
+      font-size: 1.1rem;
+    }
 
-        /* Navigation Cards */
-        .nav-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
-        }
+    /* Navigation Cards */
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-bottom: 30px;
+    }
 
-        .nav-card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-decoration: none;
-            display: block;
-            position: relative;
-            overflow: hidden;
-        }
+    .nav-card {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      display: block;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .nav-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-        }
+    .nav-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+    }
 
-        .nav-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
-        }
+    .nav-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    }
 
-        .nav-card-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            display: block;
-        }
+    .nav-card-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      display: block;
+    }
 
-        .nav-card h2 {
-            color: #2d3748;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
+    .nav-card h2 {
+      color: #2d3748;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
 
-        .nav-card p {
-            color: #718096;
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
+    .nav-card p {
+      color: #718096;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
 
-        /* Info Section */
-        .info-section {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            margin-bottom: 30px;
-        }
+    /* Info Section */
+    .info-section {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      margin-bottom: 30px;
+    }
 
-        .info-section h3 {
-            color: #667eea;
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-        }
+    .info-section h3 {
+      color: #667eea;
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
 
-        .info-item {
-            background: #f7fafc;
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
-        }
+    .info-item {
+      background: #f7fafc;
+      padding: 15px;
+      border-radius: 10px;
+      border-left: 4px solid #667eea;
+    }
 
-        .info-item strong {
-            display: block;
-            color: #2d3748;
-            margin-bottom: 5px;
-        }
+    .info-item strong {
+      display: block;
+      color: #2d3748;
+      margin-bottom: 5px;
+    }
 
-        .info-item span {
-            color: #718096;
-            font-size: 0.9rem;
-        }
+    .info-item span {
+      color: #718096;
+      font-size: 0.9rem;
+    }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            color: white;
-            margin-top: 30px;
-            padding: 20px;
-        }
+    /* Footer */
+    footer {
+      text-align: center;
+      color: white;
+      margin-top: 30px;
+      padding: 20px;
+    }
 
-        footer p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
+    footer p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
 
-        /* RWD - Tablet */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
+    /* RWD - Tablet */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
 
-            .nav-grid {
-                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-                gap: 20px;
-            }
+      .nav-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+      }
 
-            .nav-card {
-                padding: 25px;
-            }
+      .nav-card {
+        padding: 25px;
+      }
 
-            .nav-card-icon {
-                font-size: 2.5rem;
-            }
-        }
+      .nav-card-icon {
+        font-size: 2.5rem;
+      }
+    }
 
-        /* RWD - Mobile */
-        @media (max-width: 480px) {
-            body {
-                padding: 15px;
-            }
+    /* RWD - Mobile */
+    @media (max-width: 480px) {
+      body {
+        padding: 15px;
+      }
 
-            header {
-                padding: 20px;
-            }
+      header {
+        padding: 20px;
+      }
 
-            header h1 {
-                font-size: 1.8rem;
-            }
+      header h1 {
+        font-size: 1.8rem;
+      }
 
-            header p {
-                font-size: 1rem;
-            }
+      header p {
+        font-size: 1rem;
+      }
 
-            .nav-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
+      .nav-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
 
-            .nav-card {
-                padding: 20px;
-            }
+      .nav-card {
+        padding: 20px;
+      }
 
-            .nav-card h2 {
-                font-size: 1.3rem;
-            }
+      .nav-card h2 {
+        font-size: 1.3rem;
+      }
 
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
 
-            .info-section {
-                padding: 20px;
-            }
-        }
-    </style>
+      .info-section {
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <h1><%= title %> 🛠 </h1>
-            <p><%= message %></p>
-        </header>
+  <a href="https://SiteStates.com" title="站長工具" style="display: none;">
+    <img src="https://SiteStates.com/show/image/33556.jpg" border="0" />
+  </a>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <h1><%= title %> 🛠 </h1>
+      <p><%= message %></p>
+    </header>
 
-        <!-- Navigation Cards -->
-        <div class="nav-grid">
-            <a href="/players" class="nav-card">
-                <span class="nav-card-icon">📈</span>
-                <h2>生涯排行</h2>
-                <p>查看所有玩家的詳細資料、統計數據...</p>
-            </a>
+    <!-- Navigation Cards -->
+    <div class="nav-grid">
+      <a href="/players" class="nav-card">
+        <span class="nav-card-icon">📈</span>
+        <h2>生涯排行</h2>
+        <p>查看所有玩家的詳細資料、統計數據...</p>
+      </a>
 
-            <a href="/players/leaderboard" class="nav-card">
-                <span class="nav-card-icon">🏆</span>
-                <h2>天梯排行</h2>
-                <p>查看傳奇之路排行榜，包含歷史最佳排名和賽季數據</p>
-            </a>
+      <a href="/players/leaderboard" class="nav-card">
+        <span class="nav-card-icon">🏆</span>
+        <h2>天梯排行</h2>
+        <p>查看傳奇之路排行榜，包含歷史最佳排名和賽季數據</p>
+      </a>
 
-            <a href="/players/badges" class="nav-card">
-                <span class="nav-card-icon">🏅</span>
-                <h2>徽章排行</h2>
-                <p>查看徽章排行榜的詳細資料、統計數據...</p>
-            </a>
-        </div>
-
-        <!-- Info Section -->
-        <div class="info-section">
-            <h3>📊 系統資訊</h3>
-            <div class="info-grid">
-                <div class="info-item">
-                    <strong>當前時間</strong>
-                    <span><%= new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' }) %></span>
-                </div>
-                <div class="info-item">
-                    <strong>伺服器狀態</strong>
-                    <span>🟢 運行中</span>
-                </div>
-                <div class="info-item">
-                    <strong>資料來源</strong>
-                    <span>Clash Royale API</span>
-                </div>
-                <div class="info-item">
-                    <strong>版本</strong>
-                    <span>v0.2.0</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer>
-            <p>&copy; <%= new Date().getFullYear() %> TCRS - Taiwan Clash Ranking System</p>
-            <p>Made with ❤️ for Xiang</p>
-        </footer>
+      <a href="/players/badges" class="nav-card">
+        <span class="nav-card-icon">🏅</span>
+        <h2>徽章排行</h2>
+        <p>查看徽章排行榜的詳細資料、統計數據...</p>
+      </a>
     </div>
+
+    <!-- Info Section -->
+    <div class="info-section">
+      <h3>📊 系統資訊</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <strong>當前時間</strong>
+          <span><%= new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' }) %></span>
+        </div>
+        <div class="info-item">
+          <strong>伺服器狀態</strong>
+          <span>🟢 運行中</span>
+        </div>
+        <div class="info-item">
+          <strong>資料來源</strong>
+          <span>Clash Royale API</span>
+        </div>
+        <div class="info-item">
+          <strong>版本</strong>
+          <span>v0.2.0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; <%= new Date().getFullYear() %> TCRS - Taiwan Clash Ranking System</p>
+      <p>Made with ❤️ for Xiang</p>
+    </footer>
+  </div>
 </body>
+
 </html>
