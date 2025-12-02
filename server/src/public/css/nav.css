@@ -1,4 +1,14 @@
 /* ---------------------Nav-------------------------- */
+.nav-bg {
+    width: 100%;
+    background: #FFF;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: .2em 0;
+}
+
 #menu-switch {
     display: none;
 }
@@ -16,10 +26,11 @@
 
 .logo {
     display: flex;
-   align-self: center;
-   font-weight: bold;
-   font-size: 1.5em;
+    align-self: center;
+    font-weight: bold;
+    font-size: 1.5em;
 }
+
 /* .logo h1 {
     display: inline-block;
     font-size: 1em;
@@ -44,7 +55,8 @@
     transition: .5s ease;
     background: #dfb961;
 }
-.bx-chevron-right::before{
+
+.bx-chevron-right::before {
     font-size: 1.5em;
     vertical-align: sub;
 }
@@ -144,7 +156,8 @@
         transform: translateX(0%);
         transition: .5s ease-in-out;
     }
-    .logo a{
+
+    .logo a {
         padding-left: 0.3em;
     }
 
@@ -180,10 +193,12 @@
         width: 3em;
 
     }
-    .logo a{
+
+    .logo a {
         margin-top: 0.2em;
     }
-    .main-header{
+
+    .main-header {
         padding: .3em 0;
     }
 }

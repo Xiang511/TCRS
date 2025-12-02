@@ -50,6 +50,7 @@ table.dataTable tbody td {
     color: #667eea;
     font-size: 2.5rem;
     font-weight: bold;
+    margin-top: 1em;
     margin-bottom: 20px;
     text-align: center;
 }
