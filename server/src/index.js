@@ -7,6 +7,9 @@ const mongoose = require('mongoose');
 
 
 var playersRouter = require('./routes/players');
+const pageViewCounter = require('./middleware/pageViewCounter');
+const PageView = require('./models/PageView');
+const DailyStats = require('./models/DailyStats');
 
 dotenv.config({ path: './config.env' });
 const app = express();
@@ -36,6 +39,9 @@ app.set('view engine', 'ejs'); // 設置 EJS 為視圖引擎
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
+
+// 頁面訪問計數中間件
+app.use(pageViewCounter);
 
 // 設置 strictQuery 選項
 mongoose.set('strictQuery', true);
@@ -71,6 +77,63 @@ app.get('/', (req, res) => {
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
+});
+
+// 獲取總訪問統計
+app.get('/api/stats', async (req, res) => {
+  try {
+    const stats = await PageView.find().sort({ count: -1 });
+    const totalViews = stats.reduce((sum, page) => sum + page.count, 0);
+    
+    res.json({
+      totalViews,
+      pages: stats,
+      timestamp: new Date()
+    });
+  } catch (error) {
+    console.error('獲取統計資料失敗:', error);
+    res.status(500).json({ error: '無法獲取統計資料' });
+  }
+});
+
+// 獲取特定頁面訪問次數
+app.get('/api/stats/:path(*)', async (req, res) => {
+  try {
+    const path = '/' + req.params.path;
+    const pageView = await PageView.findOne({ path });
+    
+    if (!pageView) {
+      return res.json({ path, count: 0, message: '此頁面尚無訪問記錄' });
+    }
+    
+    res.json(pageView);
+  } catch (error) {
+    console.error('獲取頁面統計失敗:', error);
+    res.status(500).json({ error: '無法獲取頁面統計' });
+  }
+});
+
+// 獲取每日訪問統計
+app.get('/api/daily-stats', async (req, res) => {
+  try {
+    const { days = 30 } = req.query;
+    
+    // 獲取最近 N 天的統計
+    const stats = await DailyStats.find()
+      .sort({ date: -1 })
+      .limit(parseInt(days));
+    
+    // 反轉順序使日期從舊到新
+    stats.reverse();
+    
+    res.json({
+      stats: stats,
+      days: stats.length
+    });
+  } catch (error) {
+    console.error('獲取每日統計失敗:', error);
+    res.status(500).json({ error: '無法獲取每日統計' });
+  }
 });
 
 // 404 錯誤
