@@ -166,7 +166,49 @@ router.get('/list', async function (req, res, next) {
 
 
 
+// 玩家詳情頁面 - 顯示歷史記錄
+router.get('/:tag', async function (req, res, next) {
+  try {
+    const playerTag = req.params.tag;
+    
+    // 驗證 playerTag 格式
+    const validTagPattern = /^[A-Z0-9]{8,}$/i;
+    if (!validTagPattern.test(playerTag)) {
+      return res.status(404).render('error', {
+        statusCode: 404,
+        title: '無效的玩家標籤',
+        message: '玩家標籤格式不正確,請檢查後再試一次。'
+      });
+    }
 
+    // 查詢該玩家的所有歷史記錄,按時間降序排列
+    const playerHistory = await Player.find({ 
+      tag: '#'+playerTag 
+    }).sort({ time: -1 });
+
+    // 如果找不到該玩家
+    if (!playerHistory || playerHistory.length === 0) {
+      return res.status(404).render('error', {
+        statusCode: 404,
+        title: '找不到玩家',
+        message: '資料庫中找不到此玩家的記錄。'
+      });
+    }
+
+    res.render('player-detail', { 
+      title: `${playerHistory[0].name} - 玩家詳情`,
+      player: playerHistory[0], // 最新的記錄
+      history: playerHistory // 所有歷史記錄
+    });
+  } catch (error) {
+    console.error('獲取玩家詳情失敗:', error);
+    res.status(500).render('error', {
+      statusCode: 500,
+      title: '伺服器錯誤',
+      message: '系統發生錯誤,請稍後再試或聯繫管理員。'
+    });
+  }
+});
 
 
 
@@ -218,7 +260,7 @@ router.get('/list', async function (req, res, next) {
 //     return res.status(404).render('error', {
 //       statusCode: 404,
 //       title: '無效的玩家標籤',
-//       message: '玩家標籤格式不正確，請檢查後再試一次。'
+//       message: '玩家標籤格式不正確,請檢查後再試一次。'
 //     });
 //   }
 
@@ -236,5 +278,7 @@ router.get('/list', async function (req, res, next) {
 //       res.status(500).json({ error: 'Failed to fetch player data' });
 //     });
 // });
+
+
 
 module.exports = router;

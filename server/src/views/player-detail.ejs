@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="/css/nav.css">
+  <!-- C3.js -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.css" rel="stylesheet">
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.js"></script>
+</head>
+
+<body class="bg-gray-100">
+  <!-- Navigation -->
+ <section class="nav-bg">
+     <a href="https://SiteStates.com" title="站長工具" style="display: none;">
+        <img src="https://SiteStates.com/show/image/33556.jpg" border="0" />
+      </a>
+      <input type="checkbox" id="menu-switch">
+      <header class="main-header">
+        <div class="logo">
+          <a href="/">
+            TCRS
+          </a>
+        </div>
+        <label for="menu-switch" class="hb icon">
+          <i class='bx bx-menu open'></i>
+          <i class='bx bx-x close'></i>
+        </label>
+        <nav class="main-nav">
+          <a class="click" href="/">首頁</a>
+          <a class="click" href="/players"><i class='bx bx-trophy mr-1'></i>生涯紀錄</a>
+          <a class="click" href="/players/leaderboard"><i class='bx bx-bar-chart-alt-2 mr-1'></i>天梯紀錄</a>
+          <a class="click" href="/players/badges"><i class='bx bx-badge-check mr-1'></i>徽章紀錄</a>
+        </nav>
+      </header>
+ </section>
+
+  <!-- Main Content -->
+  <div class="container mx-auto px-4 py-8">
+    <!-- Player Header -->
+    <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-4">
+          <div class="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
+            <%= player.name.charAt(0) %>
+          </div>
+          <div>
+            <h1 class="text-3xl font-bold text-gray-800"><%= player.name %></h1>
+            <p class="text-gray-600">#<%= player.tag %></p>
+          </div>
+        </div>
+        <div class="text-right">
+          <p class="text-sm text-gray-600">最新數據時間</p>
+          <p class="text-lg font-semibold text-indigo-600"><%= player.time %></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+      <!-- Best Rank -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-gray-600">最佳排名</p>
+            <p class="text-2xl font-bold text-indigo-600">
+              <%= player.bestPathOfLegendSeasonResult?.rank || 'N/A' %>
+            </p>
+          </div>
+          <i class='bx bx-medal text-4xl text-indigo-600'></i>
+        </div>
+      </div>
+
+      <!-- Best Trophies -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-gray-600">最佳獎盃</p>
+            <p class="text-2xl font-bold text-purple-600">
+              <%= player.bestPathOfLegendSeasonResult?.trophies || 'N/A' %>
+            </p>
+          </div>
+          <i class='bx bx-trophy text-4xl text-purple-600'></i>
+        </div>
+      </div>
+
+      <!-- Star Points -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-gray-600">星星點數</p>
+            <p class="text-2xl font-bold text-yellow-600"><%= player.starPoints || 0 %></p>
+          </div>
+          <i class='bx bx-star text-4xl text-yellow-600'></i>
+        </div>
+      </div>
+
+      <!-- Wins -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-gray-600">總勝場</p>
+            <p class="text-2xl font-bold text-green-600"><%= player.wins || 0 %></p>
+          </div>
+          <i class='bx bx-check-circle text-4xl text-green-600'></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <!-- Rank History Chart -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">
+          <i class='bx bx-line-chart mr-2'></i>排名歷史趨勢
+        </h2>
+        <div id="rankHistoryChart"></div>
+      </div>
+
+      <!-- Trophy History Chart -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">
+          <i class='bx bx-trending-up mr-2'></i>獎盃歷史趨勢
+        </h2>
+        <div id="trophyHistoryChart"></div>
+      </div>
+    </div>
+
+    <!-- Badges Progress -->
+    <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">
+        <i class='bx bx-badge-check mr-2'></i>徽章進度
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <% if (player.badges) { %>
+          <% Object.entries(player.badges).forEach(([key, value]) => { %>
+            <div class="p-4 bg-gray-50 rounded-lg">
+              <p class="text-sm text-gray-600 mb-1"><%= key %></p>
+              <div class="flex items-center">
+                <div class="flex-1 bg-gray-200 rounded-full h-2 mr-2">
+                  <div class="bg-indigo-600 h-2 rounded-full" style="width: <%= Math.min(value * 10, 100) %>%"></div>
+                </div>
+                <span class="text-sm font-semibold"><%= value %></span>
+              </div>
+            </div>
+          <% }); %>
+        <% } else { %>
+          <p class="col-span-full text-gray-500 text-center">無徽章資料</p>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- Progress Details -->
+    <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">
+        <i class='bx bx-list-ul mr-2'></i>進度詳情
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <% if (player.progress && player.progress.size > 0) { %>
+          <% Array.from(player.progress.entries()).forEach(([key, value]) => { %>
+            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+              <span class="text-sm text-gray-700"><%= key %></span>
+              <span class="text-sm font-semibold text-indigo-600"><%= value %></span>
+            </div>
+          <% }); %>
+        <% } else { %>
+          <p class="col-span-full text-gray-500 text-center">無進度資料</p>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- History Table -->
+    <div class="bg-white rounded-lg shadow-lg p-6">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">
+        <i class='bx bx-history mr-2'></i>歷史記錄
+      </h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">時間</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">排名</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">獎盃</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">星星點數</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">勝場</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <% history.forEach((record, index) => { %>
+              <tr class="<%= index === 0 ? 'bg-indigo-50' : 'hover:bg-gray-50' %>">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <%= record.time %>
+                  <% if (index === 0) { %>
+                    <span class="ml-2 px-2 py-1 text-xs font-semibold rounded-full bg-indigo-600 text-white">最新</span>
+                  <% } %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <%= record.bestPathOfLegendSeasonResult?.rank || 'N/A' %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <%= record.bestPathOfLegendSeasonResult?.trophies || 'N/A' %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <%= record.starPoints || 0 %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <%= record.wins || 0 %>
+                </td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    // Prepare history data
+    const historyData = <%- JSON.stringify(history) %>;
+    
+    // Process data for charts
+    const times = historyData.map(h => h.time).reverse();
+    const ranks = historyData.map(h => h.bestPathOfLegendSeasonResult?.rank || null).reverse();
+    const trophies = historyData.map(h => h.bestPathOfLegendSeasonResult?.trophies || null).reverse();
+
+    // Rank History Chart
+    c3.generate({
+      bindto: '#rankHistoryChart',
+      data: {
+        x: 'x',
+        columns: [
+          ['x', ...times],
+          ['排名', ...ranks]
+        ],
+        type: 'line'
+      },
+      axis: {
+        x: {
+          type: 'category',
+          tick: {
+            rotate: -45,
+            multiline: false
+          }
+        },
+        y: {
+          inverted: true, // 排名越小越好,所以反轉Y軸
+          label: {
+            text: '排名',
+            position: 'outer-middle'
+          }
+        }
+      },
+      point: {
+        r: 5
+      },
+      color: {
+        pattern: ['#667eea']
+      },
+      tooltip: {
+        format: {
+          title: function (d) { return '時間: ' + times[d]; },
+          value: function (value) { return value ? '排名 ' + value : 'N/A'; }
+        }
+      }
+    });
+
+    // Trophy History Chart
+    c3.generate({
+      bindto: '#trophyHistoryChart',
+      data: {
+        x: 'x',
+        columns: [
+          ['x', ...times],
+          ['獎盃', ...trophies]
+        ],
+        type: 'bar'
+      },
+      axis: {
+        x: {
+          type: 'category',
+          tick: {
+            rotate: -45,
+            multiline: false
+          }
+        },
+        y: {
+          label: {
+            text: '獎盃數',
+            position: 'outer-middle'
+          }
+        }
+      },
+      bar: {
+        width: {
+          ratio: 0.5
+        }
+      },
+      color: {
+        pattern: ['#764ba2']
+      },
+      tooltip: {
+        format: {
+          title: function (d) { return '時間: ' + times[d]; },
+          value: function (value) { return value ? value + ' 獎盃' : 'N/A'; }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

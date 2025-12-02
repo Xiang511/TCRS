@@ -40,32 +40,29 @@
 </head>
 
 <body>
-  <a href="https://SiteStates.com" title="站長工具" style="display: none;">
-    <img src="https://SiteStates.com/show/image/33556.jpg" border="0" />
-  </a>
-  <input type="checkbox" id="menu-switch">
-  <header class="main-header">
-    <div class="logo">
-      <a href="/">
-        TCRS
+  <section class="nav-bg">
+     <a href="https://SiteStates.com" title="站長工具" style="display: none;">
+        <img src="https://SiteStates.com/show/image/33556.jpg" border="0" />
       </a>
-    </div>
-
-    <label for="menu-switch" class="hb icon">
-      <i class='bx bx-menu open'></i>
-      <i class='bx bx-x close'></i>
-    </label>
-
-    <nav class="main-nav">
-      <a class="click" href="/">首頁</a>
-      <a class="click" href="/players">生涯紀錄</a>
-      <a class="click" href="/players/leaderboard">天梯紀錄</a>
-      <a class="click" href="/players/badges">徽章紀錄</a>
-
-
-
-    </nav>
-  </header>
+      <input type="checkbox" id="menu-switch">
+      <header class="main-header">
+        <div class="logo">
+          <a href="/">
+            TCRS
+          </a>
+        </div>
+        <label for="menu-switch" class="hb icon">
+          <i class='bx bx-menu open'></i>
+          <i class='bx bx-x close'></i>
+        </label>
+        <nav class="main-nav">
+          <a class="click" href="/">首頁</a>
+          <a class="click" href="/players"><i class='bx bx-trophy mr-1'></i>生涯紀錄</a>
+          <a class="click" href="/players/leaderboard"><i class='bx bx-bar-chart-alt-2 mr-1'></i>天梯紀錄</a>
+          <a class="click" href="/players/badges"><i class='bx bx-badge-check mr-1'></i>徽章紀錄</a>
+        </nav>
+      </header>
+ </section>
   <div class="container">
     <h1><%= title %> <img class="leaderboardTitleIcon" src="/img/battle.png" alt=""></h1>
 
@@ -117,7 +114,7 @@
       <tbody>
         <% players.forEach(function(player) { %>
         <tr>
-          <td><%= player.name %></td>
+          <td><a href="/players/<%= player.tag.substring(1) %>"><%= player.name %></a> </td>
           <td><%= player.expLevel %></td>
           <td><%= player.wins %></td>
           <td><%= player.battleCount %></td>
