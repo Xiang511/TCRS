@@ -119,6 +119,33 @@ router.get('/badges', async function (req, res, next) {
 });
 
 
+
+
+
+
+
+// router.get('/leaderboard/stats', async (req, res) => {
+//   const availableSeasons = await Player.distinct('time');
+//   availableSeasons.sort().reverse(); // 最新的在前面
+//   const latestSeason = availableSeasons[0];
+//   const stats = await Player.aggregate([
+//     { $match: { time: latestSeason } },
+//     {
+//       $group: {
+//         _id: null,
+//         avgRank: { $avg: '$bestPathOfLegendSeasonResult.rank' },
+//         avgTrophies: { $avg: '$bestPathOfLegendSeasonResult.trophies' },
+//         maxTrophies: { $max: '$bestPathOfLegendSeasonResult.trophies' }
+//       }
+//     }
+//   ]);
+//   res.json(stats);
+// });
+
+
+
+
+
 // 從 MongoDB 獲取玩家列表 (JSON API)
 router.get('/list', async function (req, res, next) {
   try {

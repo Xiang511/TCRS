@@ -49,3 +49,33 @@ const online = document.querySelectorAll(".sitestatesJs");
 const onlineSpan = online[2];
 const onlineSpan_txt = onlineSpan.textContent;
 const onlineSpan_result = onlineSpan_txt.substring(text.length - 4);
+
+
+
+let searchitem1 = document.getElementById("searchitem1");
+
+
+function multiSearch() {
+
+    $(document).ready(function () {
+        var table = $('#myTable').DataTable(); // 確保這裡的表格ID為'myTable'
+
+        $.fn.dataTable.ext.search.push(
+            function (settings, data, dataIndex) {
+                var name = data[0].toLowerCase();
+                var searchTerms = searchitem1.value.toLowerCase().split('+'); // 使用單一搜尋框，分隔符號為'+'
+
+                // 檢查是否有任何子搜尋詞符合
+                for (let subTerm of searchTerms) {
+                    if (name.includes(subTerm.trim())) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        );
+
+        table.draw();
+    });
+
+}

@@ -161,3 +161,31 @@ table.dataTable tbody td {
  	padding: .4em;
     margin: 1em auto auto auto;
 }
+
+
+.compare-section{
+    width: 100%;
+    margin: 2em auto 3em auto;
+    display: flex;
+}
+.compare-section input{
+    width: 80%;
+    padding: 8px 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.compare-section button{
+    width: 20%;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #667eea;
+    color: white;
+    margin-left: 1em;
+    transition: all 0.3s;
+}
