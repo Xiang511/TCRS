@@ -27,15 +27,7 @@ $(document).ready(function () {
         }
     });
 
-    // 季度選擇器切換
-    $('#seasonSelect').on('change', function () {
-        const selectedSeason = $(this).val();
-        if (selectedSeason) {
-            window.location.href = `/players?time=${encodeURIComponent(selectedSeason)}`;
-        } else {
-            window.location.href = '/players';
-        }
-    });
+    
 });
 
 //即時查詢總人數

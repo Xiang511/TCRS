@@ -130,6 +130,17 @@
 
   </div>
   <script src="/js/datatable.js"></script>
+  <script>
+    // 季度選擇器切換
+    $('#seasonSelect').on('change', function () {
+        const selectedSeason = $(this).val();
+        if (selectedSeason) {
+            window.location.href = `/players?time=${encodeURIComponent(selectedSeason)}`;
+        } else {
+            window.location.href = '/players';
+        }
+    });
+  </script>
 </body>
 
 </html>
