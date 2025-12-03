@@ -10,7 +10,7 @@ async function loadStats() {
         
         // 顯示總訪問次數
         const totalViews = statsData.totalViews || 0;
-        document.getElementById('totalViews').textContent = totalViews.toLocaleString('zh-TW');
+        document.getElementById('totalViews').textContent = totalViews.toLocaleString('zh-TW')+"次";
         
         // 載入每日統計以取得今日和7日平均
         const dailyResponse = await fetch('/api/daily-stats?days=7');
@@ -20,13 +20,13 @@ async function loadStats() {
         const todayViews = dailyData.stats && dailyData.stats.length > 0 
             ? dailyData.stats[dailyData.stats.length - 1].totalViews 
             : 0;
-        document.getElementById('todayViews').textContent = todayViews.toLocaleString('zh-TW');
+        document.getElementById('todayViews').textContent = todayViews.toLocaleString('zh-TW')+"次";
         
         // 7日平均
         const avgViews = dailyData.stats && dailyData.stats.length > 0
             ? Math.round(dailyData.stats.reduce((sum, day) => sum + day.totalViews, 0) / dailyData.stats.length)
             : 0;
-        document.getElementById('avgViews').textContent = avgViews.toLocaleString('zh-TW');
+        document.getElementById('avgViews').textContent = avgViews.toLocaleString('zh-TW')+"次";
         
         // 載入圖表
         await loadDailyStats(currentDays);
@@ -52,59 +52,122 @@ async function loadDailyStats(days) {
     }
 }
 
+// ApexCharts 實例
+let chart = null;
+
 // 生成每日趨勢圖表
 function generateDailyChart(stats) {
     const dates = stats.map(s => s.date);
     const views = stats.map(s => s.totalViews);
-    c3.generate({
-        bindto: '#dailyChart',
-        data: {
-            x: 'x',
-            columns: [
-                ['x', ...dates],
-                ['訪問次數', ...views]
-            ],
-            type: 'area-spline'
-        },
-        axis: {
-            x: {
-                type: 'category',
-                tick: {
-                    multiline: false
+    
+    const options = {
+        series: [{
+            name: '訪問次數',
+            data: views
+        }],
+        chart: {
+            type: 'area',
+            height: 350,
+            toolbar: {
+                show: false,
+                tools: {
+                    download: true,
+                    selection: true,
+                    zoom: true,
+                    zoomin: true,
+                    zoomout: true,
+                    pan: true,
+                    reset: true
                 }
             },
-            y: {
-                label: {
-                    text: '訪問次數',
-                    position: 'outer-middle'
+            animations: {
+                enabled: true,
+                easing: 'easeinout',
+                speed: 800
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 3
+        },
+        // fill: {
+        //     type: 'gradient',
+        //     gradient: {
+        //         shadeIntensity: 1,
+        //         opacityFrom: 0.7,
+        //         opacityTo: 0.3,
+        //         stops: [0, 90, 100]
+        //     }
+        // },
+        xaxis: {
+            categories: dates,
+            labels: {
+                style: {
+                    colors: '#666',
+                    fontSize: '12px'
                 }
             }
         },
-        point: {
-            r: 4
-        },
-        color: {
-            pattern: ['#667eea']
-        },
-        area: {
-            zerobased: true
+        yaxis: {
+            title: {
+                text: '訪問次數',
+                style: {
+                    color: '#666',
+                    fontSize: '14px',
+                    fontWeight: 600
+                }
+            },
+            labels: {
+                formatter: function (value) {
+                    return Math.round(value).toLocaleString('zh-TW');
+                },
+                style: {
+                    colors: '#666',
+                    fontSize: '12px'
+                }
+            }
         },
         tooltip: {
-            format: {
-                title: function (d) {
-                    return dates[d];
-                },
-                value: function (value, ratio, id) {
-                    return value.toLocaleString('zh-TW');
+            y: {
+                formatter: function (value) {
+                    return value.toLocaleString('zh-TW') + ' 次';
+                }
+            },
+            theme: 'dark'
+        },
+        colors: ['#3C91E6'],
+        grid: {
+            show: true,
+            borderColor: '#e0e0e0',
+            strokeDashArray: 3,
+            yaxis: {
+                lines: {
+                    show: true
                 }
             }
         },
-        grid: {
-            y: {
-                show: true
+        markers: {
+            size: 4,
+            colors: ['#667eea'],
+            strokeColors: '#fff',
+            strokeWidth: 2,
+            hover: {
+                size: 6
             }
         }
-    });
+    };
+    
+    // 如果圖表已存在，先銷毀
+    if (chart) {
+        chart.destroy();
+    }
+    
+    // 創建新圖表
+    chart = new ApexCharts(document.querySelector('#dailyChart'), options);
+    chart.render();
 }
 
 
