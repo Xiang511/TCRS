@@ -24,6 +24,13 @@ $(document).ready(function () {
             },
             emptyTable: "目前沒有資料",
             zeroRecords: "沒有符合的資料"
+        },
+        initComplete: function() {
+            // DataTable 初始化完成後隱藏載入動畫和骨架屏
+            $('#loadingOverlay').fadeOut(300);
+            $('#skeletonScreen').fadeOut(300, function() {
+                $('#myTable').fadeIn(300);
+            });
         }
     });
 

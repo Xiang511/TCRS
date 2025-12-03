@@ -87,6 +87,90 @@
       <button class="btn" onclick="multiSearch()">比較</button>
     </div>
 
+
+    <!-- 載入覆蓋層 -->
+    <div id="loadingOverlay" class="loading-overlay">
+      <div class="loading-spinner">
+        <div class="spinner"></div>
+        <p class="loading-text">載入中...</p>
+      </div>
+    </div>
+
+    <!-- 骨架屏 -->
+    <div id="skeletonScreen" class="skeleton-screen">
+      <div class="skeleton-table">
+        <div class="skeleton-header">
+          <div class="skeleton-cell" style="width: 15%;"></div>
+          <div class="skeleton-cell" style="width: 8%;"></div>
+          <div class="skeleton-cell" style="width: 8%;"></div>
+          <div class="skeleton-cell" style="width: 8%;"></div>
+          <div class="skeleton-cell" style="width: 8%;"></div>
+          <div class="skeleton-cell" style="width: 8%;"></div>
+          <div class="skeleton-cell" style="width: 8%;"></div>
+          <div class="skeleton-cell" style="width: 8%;"></div>
+          <div class="skeleton-cell" style="width: 8%;"></div>
+        </div>
+        <div class="skeleton-body">
+          <div class="skeleton-row" style="animation-delay: 0s;">
+            <div class="skeleton-cell" style="width: 15%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+          </div>
+          <div class="skeleton-row" style="animation-delay: 0.1s;">
+            <div class="skeleton-cell" style="width: 15%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+          </div>
+          <div class="skeleton-row" style="animation-delay: 0.2s;">
+            <div class="skeleton-cell" style="width: 15%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+          </div>
+          <div class="skeleton-row" style="animation-delay: 0.3s;">
+            <div class="skeleton-cell" style="width: 15%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+          </div>
+          <div class="skeleton-row" style="animation-delay: 0.4s;">
+            <div class="skeleton-cell" style="width: 15%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+            <div class="skeleton-cell" style="width: 8%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
     <!-- 顯示玩家列表 -->
     <table id="myTable" class="display">
       <thead>
