@@ -10,7 +10,7 @@
   <link rel="shortcut icon" href="/img/battle.png" type="image/x-icon">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-<!-- jQUERY -->
+  <!-- jQUERY -->
   <script src="/js/jquery_3.7.1_jquery.min.js"></script>
   <!-- jQUERY -->
 
@@ -30,28 +30,28 @@
 
 <body>
   <section class="nav-bg">
-     <a href="https://SiteStates.com" title="站長工具" style="display: none;">
-        <img src="https://SiteStates.com/show/image/33556.jpg" border="0" />
-      </a>
-      <input type="checkbox" id="menu-switch">
-      <header class="main-header">
-        <div class="logo">
-          <a href="/">
-            TCRS
-          </a>
-        </div>
-        <label for="menu-switch" class="hb icon">
-          <i class='bx bx-menu open'></i>
-          <i class='bx bx-x close'></i>
-        </label>
-        <nav class="main-nav">
-          <a class="click" href="/"><i class='bx bx-home-alt-2'></i> 首頁</a>
-          <a class="click" href="/players"><i class='bx bx-trophy mr-1'></i>生涯紀錄</a>
-          <a class="click" href="/players/leaderboard"><i class='bx bx-bar-chart-alt-2 mr-1'></i>天梯紀錄</a>
-          <a class="click" href="/players/badges"><i class='bx bx-badge-check mr-1'></i>徽章紀錄</a>
-        </nav>
-      </header>
- </section>
+    <a href="https://SiteStates.com" title="站長工具" style="display: none;">
+      <img src="https://SiteStates.com/show/image/33556.jpg" border="0" />
+    </a>
+    <input type="checkbox" id="menu-switch">
+    <header class="main-header">
+      <div class="logo">
+        <a href="/">
+          TCRS
+        </a>
+      </div>
+      <label for="menu-switch" class="hb icon">
+        <i class='bx bx-menu open'></i>
+        <i class='bx bx-x close'></i>
+      </label>
+      <nav class="main-nav">
+        <a class="click" href="/"><i class='bx bx-home-alt-2'></i> 首頁</a>
+        <a class="click" href="/players"><i class='bx bx-trophy mr-1'></i>生涯紀錄</a>
+        <a class="click" href="/players/leaderboard"><i class='bx bx-bar-chart-alt-2 mr-1'></i>天梯紀錄</a>
+        <a class="click" href="/players/badges"><i class='bx bx-badge-check mr-1'></i>徽章紀錄</a>
+      </nav>
+    </header>
+  </section>
   <div class="container">
     <h1><%= title %> <img class="leaderboardTitleIcon" src="/img/battle.png" alt=""></h1>
 
@@ -167,7 +167,7 @@
       </div>
     </div>
 
-    
+
     <!-- 顯示玩家列表 -->
     <table id="myTable" class="display">
       <thead>
@@ -202,13 +202,14 @@
       </tbody>
     </table>
     <script src="https://SiteStates.com/show/js_text/49bcb5c0fd457f7a07d5fba4e343a5bf" type="text/javascript"></script>
-<a href="/joinus" class="joinus">沒看到你的資料? 加入我們</a>
+    <a href="/joinus" class="joinus">沒看到你的資料? 加入我們</a>
   </div>
   <footer class="footer">
     <p>&copy; <%= new Date().getFullYear() %> TCRS - Taiwan ClashRoyale Ranking System</p>
     <p>Made with ❤️ for Xiang</p>
+    <span><i class='bx bx-show'></i><%=  Pageviews.map(c=>c.count) %>次瀏覽</span>
   </footer>
-  
+
   <script src="/js/datatable.js"></script>
   <script>
     // 季度選擇器切換

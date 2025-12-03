@@ -170,7 +170,7 @@
       </div>
     </div>
 
-    
+
     <!-- 顯示玩家列表 -->
     <table id="myTable" class="display">
       <thead>
@@ -204,6 +204,7 @@
   <footer class="footer">
     <p>&copy; <%= new Date().getFullYear() %> TCRS - Taiwan ClashRoyale Ranking System</p>
     <p>Made with ❤️ for Xiang</p>
+    <span><i class='bx bx-show'></i><%=  Pageviews.map(c=>c.count) %>次瀏覽</span>
   </footer>
   <script src="/js/datatable.js"></script>
   <script>

@@ -1,5 +1,6 @@
 const express = require('express');
 const Player = require('../models/Player'); // 引入 Player 模型
+const pageviews = require('../models/PageView');
 const router = express.Router();
 const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
@@ -24,13 +25,16 @@ router.get('/', async function (req, res, next) {
 
     // 獲取玩家資料並按星星點數排序
     const players = await Player.find(filter).sort({ starPoints: -1 });
+ 
+    const Pageviews =  await pageviews.find({path:'/players'});
 
     res.render('players', {
       title: '生涯資料排行榜',
       message: 'success',
       players: players,
       availableSeasons: availableSeasons,
-      currentSeason: time || ''
+      currentSeason: time || '',
+      Pageviews: Pageviews
     });
   } catch (error) {
     console.error('獲取玩家列表失敗:', error);
@@ -63,12 +67,15 @@ router.get('/leaderboard', async function (req, res, next) {
     // 獲取玩家資料並按星星點數排序
     const players = await Player.find(filter);
 
+    const Pageviews =  await pageviews.find({path:'/players/leaderboard'});
+
     res.render('leaderboard', {
       title: '天梯賽季排行榜',
       message: 'success',
       players: players,
       availableSeasons: availableSeasons,
-      currentSeason: time || ''
+      currentSeason: time || '',
+      Pageviews: Pageviews
     });
   } catch (error) {
     console.error('獲取天梯列表失敗:', error);
@@ -101,12 +108,15 @@ router.get('/badges', async function (req, res, next) {
     // 獲取玩家資料並按星星點數排序
     const players = await Player.find(filter);
 
+    const Pageviews =  await pageviews.find({path:'/players/badges'});
+
     res.render('badges', {
       title: '徽章進度排行榜',
       message: 'success',
       players: players,
       availableSeasons: availableSeasons,
-      currentSeason: time || ''
+      currentSeason: time || '',
+      Pageviews: Pageviews
     });
   } catch (error) {
     console.error('獲取徽章進度排行榜失敗:', error);
