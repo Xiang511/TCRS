@@ -114,6 +114,7 @@ body > div.join-content > div:nth-child(1) > div.card-body > a.join-button.prima
 .join-button.discord {
     background: #5865F2;
     color: white;
+    margin: auto;
 }
 
 .join-button.discord:hover {
