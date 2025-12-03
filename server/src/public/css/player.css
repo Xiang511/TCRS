@@ -17,7 +17,9 @@ p {
     font-size: 1.2em !important;
     margin-bottom: 20px !important;
 }
-
+.btn{
+    font-weight: bold;
+}
 h1,
 p {
     text-align: center;
