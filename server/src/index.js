@@ -72,7 +72,12 @@ app.get('/', (req, res) => {
     message: '這是測試首頁!'
   });
 });
-
+app.get('/joinus', (req, res) => {
+  res.render('joinus', {
+    title: 'TCRS Server',
+    message: '這是測試首頁!'
+  });
+});
     
 
 app.get('/api/health', (req, res) => {

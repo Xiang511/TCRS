@@ -210,3 +210,12 @@ table.dataTable tbody td {
     font-size: 1rem;
     opacity: 0.9;
 }
+
+.joinus{
+    display: block;
+    margin-top: 1em;
+    font-size: 1rem;
+    color: blue;
+    text-decoration: none;
+    font-weight: 600;
+}

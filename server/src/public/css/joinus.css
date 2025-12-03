@@ -1,0 +1,314 @@
+/* Join Content */
+.join-content {
+    max-width: 1536px;
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+}
+
+.join-card {
+    background: var(--light);
+    border-radius: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.join-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    background: var(--blue);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+/* body > div.join-content > div:nth-child(1) > div.card-header {
+    background: var(--orange);
+}
+body > div.join-content > div:nth-child(1) > div.card-body > a.join-button.primary {
+    background: var(--orange);
+} */
+.card-header i {
+    font-size: 3rem;
+    color: white;
+}
+
+.card-header h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+.card-description {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+}
+
+.feature-list li {
+    padding: 0.75rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    color: var(--dark);
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.feature-list li:last-child {
+    border-bottom: none;
+}
+
+.feature-list i {
+    font-size: 1.5rem;
+    color: var(--blue);
+    flex-shrink: 0;
+}
+
+.join-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.join-button i {
+    font-size: 1.5rem;
+}
+
+.join-button.primary {
+    background: var(--blue);
+    color: white;
+}
+
+.join-button.primary:hover {
+    background: #2b7ad4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(60, 145, 230, 0.3);
+}
+
+.join-button.discord {
+    background: #5865F2;
+    color: white;
+}
+
+.join-button.discord:hover {
+    background: #4752c4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(88, 101, 242, 0.3);
+}
+
+/* Requirements Section */
+.requirements-section {
+    max-width: 1536px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: var(--light);
+    border-radius: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.requirements-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.requirements-section h2 i {
+    font-size: 2.25rem;
+    color: var(--blue);
+}
+
+.requirements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.requirement-item {
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 16px;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.requirement-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.requirement-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--light-blue);
+}
+
+.requirement-icon i {
+    font-size: 2.5rem;
+    color: var(--blue);
+}
+
+.requirement-item h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 0.75rem;
+}
+
+.requirement-item p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* FAQ Section */
+.faq-section {
+    max-width: 1536px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: var(--light);
+    border-radius: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.faq-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.faq-section h2 i {
+    font-size: 2.25rem;
+    color: var(--orange);
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.faq-item {
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--blue);
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.faq-item h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--blue);
+    margin-bottom: 0.75rem;
+}
+
+.faq-item p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .join-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin: 2rem 1rem;
+    }
+
+    .card-header {
+        padding: 1.5rem;
+    }
+
+    .card-header i {
+        font-size: 2.5rem;
+    }
+
+    .card-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+    }
+
+    .requirements-section,
+    .faq-section {
+        margin: 2rem 1rem;
+    }
+
+    .requirements-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .card-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem 1rem;
+    }
+
+    .join-button {
+        font-size: 1rem;
+        padding: 0.875rem 1.5rem;
+    }
+
+    .requirements-section h2,
+    .faq-section h2 {
+        font-size: 1.5rem;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .faq-item {
+        padding: 1.25rem 1.5rem;
+    }
+}

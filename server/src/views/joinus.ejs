@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/nav.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/joinus.css">
+  <link rel="stylesheet" href="/css/background.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+  <section class="nav-bg">
+    <a href="https://SiteStates.com" title="站長工具" style="display: none;">
+      <img src="https://SiteStates.com/show/image/33556.jpg" border="0" />
+    </a>
+    <input type="checkbox" id="menu-switch">
+    <header class="main-header">
+      <div class="logo">
+        <a href="/">
+          TCRS
+        </a>
+      </div>
+      <label for="menu-switch" class="hb icon">
+        <i class='bx bx-menu open'></i>
+        <i class='bx bx-x close'></i>
+      </label>
+      <nav class="main-nav">
+        <a class="click" href="/">首頁</a>
+        <a class="click" href="/players"><i class='bx bx-trophy mr-1'></i> 生涯紀錄</a>
+        <a class="click" href="/players/leaderboard"><i class='bx bx-bar-chart-alt-2 mr-1'></i> 天梯紀錄</a>
+        <a class="click" href="/players/badges"><i class='bx bx-badge-check mr-1'></i> 徽章紀錄</a>
+      </nav>
+    </header>
+  </section>
+
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">加入我們 <i class='bx bx-user-plus'></i></h1>
+      <p class="hero-subtitle">成為台灣皇室戰爭排名系統的一員</p>
+      <p class="hero-description"></p>
+    </div>
+  </div>
+
+  <!-- Join Methods -->
+  <ul class="box-info">
+    <li>
+      <i class='bx bx-user-plus'></i>
+      <span class="text">
+        <h3>申請加入</h3>
+        <p>填寫表單註冊</p>
+      </span>
+    </li>
+    <li>
+      <i class='bx bxl-discord'></i>
+      <span class="text">
+        <h3>Discord 社群</h3>
+        <p>問題回報 | 許願功能</p>
+      </span>
+    </li>
+    <li>
+      <i class='bx bx-trophy'></i>
+      <span class="text">
+        <h3>參與排名</h3>
+        <p>競爭榮譽榜單</p>
+      </span>
+    </li>
+  </ul>
+
+  <!-- Requirements Section -->
+  <div class="requirements-section">
+    <h2><i class='bx bx-info-circle'></i> 申請須知</h2>
+    <div class="requirements-grid">
+      <div class="requirement-item">
+        <div class="requirement-icon">
+          <i class='bx bx-game'></i>
+        </div>
+        <h3>遊戲帳號</h3>
+        <p>需要有效的皇室戰爭遊戲帳號,並能提供正確的玩家 Tag</p>
+      </div>
+      <div class="requirement-item">
+        <div class="requirement-icon">
+          <i class='bx bx-user-check'></i>
+        </div>
+        <h3>真實資訊</h3>
+        <p>請提供真實的遊戲暱稱與相關資訊,以確保資料準確性</p>
+      </div>
+      <div class="requirement-item">
+        <div class="requirement-icon">
+          <i class='bx bx-time'></i>
+        </div>
+        <h3>審核時間</h3>
+        <p>通常在 1-3 個工作天內完成審核,請耐心等候</p>
+      </div>
+      <div class="requirement-item">
+        <div class="requirement-icon">
+          <i class='bx bxs-user-check'></i>
+        </div>
+        <h3>台灣限定</h3>
+        <p>只接受台灣地區玩家申請</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Join Content -->
+  <div class="join-content">
+    <!-- Registration Section -->
+    <div class="join-card">
+      <div class="card-header">
+        <i class='bx bx-edit-alt'></i>
+        <h2>填寫申請表單</h2>
+      </div>
+      <div class="card-body">
+        <p class="card-description">
+          透過 Google 表單提交您的遊戲資訊,我們會盡快審核並將您加入排名系統。
+        </p>
+        <ul class="feature-list">
+          <li><i class='bx bx-check-circle'></i> 提供遊戲 Tag</li>
+          <li><i class='bx bx-check-circle'></i> 確認遊戲暱稱</li>
+        </ul>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfHRPc7cGVIUJNkCIyUNUiwJ73avpwfF-NSlDCZVHVtR3IhRg/viewform" target="_blank" class="join-button primary">
+          <i class='bx bx-right-arrow-circle'></i>
+          前往填寫表單
+        </a>
+      </div>
+    </div>
+
+    <!-- Discord Section -->
+    <div class="join-card">
+      <div class="card-header">
+        <i class='bx bxl-discord-alt'></i>
+        <h2>加入 Discord 社群</h2>
+      </div>
+      <div class="card-body">
+        <p class="card-description">
+          在 Discord 獲取最新系統更新資訊或者提供您對系統的建議。
+        </p>
+        <ul class="feature-list">
+          <li><i class='bx bx-check-circle'></i> 系統更新通知</li>
+          <li><i class='bx bx-check-circle'></i> 問題回報支援</li>
+        </ul>
+        <a href="https://discord.gg/szSTDNxBM6" target="_blank" class="join-button discord">
+          <i class='bx bxl-discord'></i>
+          加入 Discord
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- FAQ Section -->
+  <div class="faq-section">
+    <h2><i class='bx bx-help-circle'></i> 常見問題</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Q: 加入排名系統需要付費嗎?</h3>
+        <p>A: 完全免費! TCRS 是一個非營利的社群專案!</p>
+      </div>
+      <div class="faq-item">
+        <h3>Q: 我的資料會自動更新嗎?</h3>
+        <p>A: 是的,系統會定期從官方 API 抓取最新數據並自動更新。</p>
+      </div>
+      <div class="faq-item">
+        <h3>Q: 如果我的資料有誤怎麼辦?</h3>
+        <p>A: 請透過 Discord 聯繫管理員,我們會盡快協助處理。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; <%= new Date().getFullYear() %> TCRS - Taiwan ClashRoyale Ranking System</p>
+    <p>Made with ❤️ for Xiang</p>
+  </footer>
+
+  <div class="area">
+    <ul class="circles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+</body>
+
+</html>
